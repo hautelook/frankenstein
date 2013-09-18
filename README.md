@@ -57,6 +57,23 @@ public function test()
 }
 ```
 
+### Prophecy arguments
+
+The test class let you access the `Prophecy\Argument` shortcut methods through `$this->arg` or `$this->arg()`:
+
+```php
+public function test()
+{
+    $routerProphecy = $this->prophesize('Symfony\Component\Routing\Generator\UrlGeneratorInterface');
+    $routerProphecy
+        ->generate($this->arg->type('string'))
+        ->willReturn('/acme')
+    ;
+
+    $foo = new Foo($routerProphecy->reveal());
+}
+```
+
 Running the Tests
 -----------------
 

@@ -11,6 +11,7 @@ use PHPUnit_Framework_Constraint;
 use PHPUnit_Util_XML;
 use PHPUnit_Util_Type;
 use PHPUnit_Framework_Constraint_IsIdentical;
+use Prophecy\Argument;
 use Prophecy\Exception\Prediction\PredictionException;
 use Prophecy\Prophet;
 
@@ -56,6 +57,8 @@ use Prophecy\Prophet;
  * @property \mageekguy\atoum\asserters\string $string
  * @property \mageekguy\atoum\asserters\output $output
  * @property \mageekguy\atoum\asserters\error $error
+ *
+ * @property Argument $arg
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
@@ -63,6 +66,11 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * @var Prophet
      */
     private $prophet;
+
+    /**
+     * @var Argument
+     */
+    private $argument;
 
     /**
      * @var test\assertion\manager
@@ -76,6 +84,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     public function __get($property)
     {
+        if ('arg' === $property) {
+            return $this->argument;
+        }
+
         return $this->assertionManager->__get($property);
     }
 
@@ -93,9 +105,18 @@ class TestCase extends \PHPUnit_Framework_TestCase
         return $this->prophet->prophesize($classOrInterface);
     }
 
+    /**
+     * @return Argument
+     */
+    protected function arg()
+    {
+        return $this->argument;
+    }
+
     protected function setUp()
     {
         $this->prophet = new Prophet();
+        $this->argument = new Argument();
         $this->setAsserterGenerator();
         $this->setAssertionManager();
     }
@@ -108,6 +129,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         $this->prophet = null;
+        $this->argument = null;
         $this->asserterGenerator->setTest(null);
         $this->asserterGenerator = null;
         $this->assertionManager = null;

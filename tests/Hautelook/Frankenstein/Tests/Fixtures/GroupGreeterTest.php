@@ -3,7 +3,6 @@
 namespace Hautelook\Frankenstein\Tests\Fixtures;
 
 use Hautelook\Frankenstein\TestCase;
-use Prophecy\Argument;
 
 class GroupGreeterTest extends TestCase
 {
@@ -13,7 +12,7 @@ class GroupGreeterTest extends TestCase
         $groupGreeter = new GroupGreeter($greeterProphecy->reveal());
 
         $greeterProphecy
-            ->greet(Argument::any())
+            ->greet($this->arg->any())
             ->will(function ($args) {
                 return 'Hey ' . $args[0];
             })
