@@ -2,6 +2,7 @@ Frankenstein
 ============
 
 [![Build Status](https://secure.travis-ci.org/hautelook/frankenstein.png)](http://travis-ci.org/hautelook/frankenstein)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/hautelook/frankenstein/badges/quality-score.png?s=212ae05837cacaa26ca0f498c72ff38229e64204)](https://scrutinizer-ci.com/g/hautelook/frankenstein/)
 
 This let you use PHPUnit with [Prophecy](https://github.com/phpspec/prophecy) mocks and [Atoum](http://docs.atoum.org/)
 asserters.
