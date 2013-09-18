@@ -1,0 +1,27 @@
+{
+    "name": "hautelook/frankenstein",
+    "description": "The creature that is summoned by mixing PHPUnit, Prophecy, Atoum.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrien Brault",
+            "email": "adrien.brault@gmail.com"
+        }
+    ],
+    "require": {
+        "atoum/atoum": "dev-master",
+        "phpunit/phpunit": "~3.7",
+        "phpspec/prophecy": "~1.0"
+    },
+    "autoload": {
+        "psr-0": { "Hautelook\\Frankenstein": "src/" }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
