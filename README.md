@@ -75,3 +75,4 @@ Credits
 -------
 
 This library has copies of code from https://github.com/phpspec/prophecy-phpunit and https://github.com/atoum/atoum .
+
