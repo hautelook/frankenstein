@@ -13,6 +13,7 @@ use PHPUnit_Util_Type;
 use PHPUnit_Framework_Constraint_IsIdentical;
 use Prophecy\Argument;
 use Prophecy\Exception\Prediction\PredictionException;
+use Prophecy\PhpUnit\ProphecyTestCase;
 use Prophecy\Prophet;
 
 /**
@@ -60,13 +61,8 @@ use Prophecy\Prophet;
  *
  * @property Argument $arg
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends ProphecyTestCase
 {
-    /**
-     * @var Prophet
-     */
-    private $prophet;
-
     /**
      * @var Argument
      */
@@ -96,15 +92,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
         return $this->assertionManager->__call($method, $arguments);
     }
 
-    protected function prophesize($classOrInterface = null)
-    {
-        if (null === $this->prophet) {
-            throw new \LogicException(sprintf('The setUp method of %s must be called to initialize Prophecy.', __CLASS__));
-        }
-
-        return $this->prophet->prophesize($classOrInterface);
-    }
-
     /**
      * @return Argument
      */
@@ -115,31 +102,26 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->prophet = new Prophet();
+        parent::setUp();
+
         $this->argument = new Argument();
         $this->setAsserterGenerator();
         $this->setAssertionManager();
     }
 
-    protected function assertPostConditions()
-    {
-        $this->prophet->checkPredictions();
-    }
-
     protected function tearDown()
     {
-        $this->prophet = null;
         $this->argument = null;
         $this->asserterGenerator->setTest(null);
         $this->asserterGenerator = null;
         $this->assertionManager = null;
+
+        parent::teardown();
     }
 
     protected function onNotSuccessfulTest(\Exception $e)
     {
-        if ($e instanceof PredictionException) {
-            $e = new \PHPUnit_Framework_AssertionFailedError($e->getMessage(), $e->getCode());
-        } elseif ($e instanceof asserter\exception) {
+        if ($e instanceof asserter\exception) {
             $e = new \PHPUnit_Framework_AssertionFailedError($e->getMessage(), $e->getCode());
         }
 
