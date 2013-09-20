@@ -93,5 +93,5 @@ Frankenstein is released under the MIT License. See the bundled LICENSE file for
 Credits
 -------
 
-This library has copies of code from https://github.com/phpspec/prophecy-phpunit and https://github.com/atoum/atoum .
+This library has copies of code https://github.com/atoum/atoum and uses https://github.com/phpspec/prophecy-phpunit .
 
