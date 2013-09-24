@@ -189,6 +189,16 @@ class TestCase extends ProphecyTestCase
         return $this;
     }
 
+    public function getAsserterGenerator()
+    {
+        return $this->asserterGenerator;
+    }
+
+    public function getAssertionManager()
+    {
+        return $this->assertionManager;
+    }
+
     // -----------------------------------------------------------------------------------------------------------------
     //
     // DEPRECATED STUFF

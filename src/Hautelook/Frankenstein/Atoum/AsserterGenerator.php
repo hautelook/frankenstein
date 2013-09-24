@@ -20,7 +20,7 @@ class AsserterGenerator extends generator
     /**
      * @param TestCase $test
      */
-    public function setTest($test)
+    public function setTest(TestCase $test = null)
     {
         $this->test = $test;
     }
@@ -49,5 +49,15 @@ class AsserterGenerator extends generator
         }
 
         return parent::getAsserterClass($asserter);
+    }
+
+    public function __get($property)
+    {
+        return $this->test->getAssertionManager()->invoke($property);
+    }
+
+    public function __call($method, $arguments)
+    {
+        return $this->test->getAssertionManager()->invoke($method, $arguments);
     }
 }

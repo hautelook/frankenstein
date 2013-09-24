@@ -20,6 +20,12 @@ class GroupGreeterTest extends TestCase
         ;
 
         $this
+            ->array($groupGreeter->greet(array()))
+                ->isEmpty()
+            ->and
+            ->when(function () {
+
+            })
             ->array($groupGreeter->greet(array('Adrien', 'Baldur')))
                 ->hasSize(2)
                 ->contains('Hey Adrien')
