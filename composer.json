@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "atoum/atoum": "dev-master",
+        "atoum/atoum": "0.0.1",
         "phpspec/prophecy-phpunit": "~1.0"
     },
     "require-dev": {
